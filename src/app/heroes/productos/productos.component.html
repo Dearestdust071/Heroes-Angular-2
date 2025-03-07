@@ -1,7 +1,6 @@
 <p-table
     #dt
-    [value]="data"
-    [(selection)]="selectedCustomers"
+    [value]="data.data"
     dataKey="id"
     [rowHover]="true"
     [rows]="10"
@@ -11,17 +10,18 @@
     [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [filterDelay]="0"
-    [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+
 >
     <ng-template #caption>
         <div class="flex justify-between">
-            <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (click)="clear(dt)" />
-            <p-iconField iconPosition="left">
+          ÷
+            <!-- <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (click)="clear(dt)" /> -->
+            <!-- <p-iconField iconPosition="left">
                 <p-inputIcon>
                     <i class="pi pi-search"></i>
                 </p-inputIcon>
                 <input pInputText type="text" [(ngModel)]="searchValue" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Keyboard Search" />
-            </p-iconField>
+            </p-iconField> -->
         </div>
     </ng-template>
     <ng-template #header>
@@ -77,37 +77,37 @@
             <th style="width: 5rem"></th>
         </tr>
     </ng-template>
-    <ng-template #body let-customer>
+    <ng-template #body let-products>
         <tr class="p-selectable-row">
             <td>
-                <p-tableCheckbox [value]="customer" />
+                <p-tableCheckbox [value]="products" />
             </td>
             <td>
-                {{ customer.name }}
+                {{ products.nombre }}
             </td>
             <td>
                 <div class="flex items-center gap-2">
-                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px" />
-                    <span class="ml-1 align-middle">{{ customer.country.name }}</span>
+                    <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px" /> -->
+                    <span class="ml-1 align-middle">{{ products.edad }}</span>
                 </div>
             </td>
             <td>
                 <div class="flex items-center gap-2">
-                    <img [alt]="customer.representative.name" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" width="32" style="vertical-align: middle" />
-                    <span class="ml-1 align-middle">{{ customer.representative.name }}</span>
+                    <!-- <img [alt]="products.representative.name" src="https://primefaces.org/cdn/primeng/images/demo/avatar/" width="32" style="vertical-align: middle" /> -->
+                    <span class="ml-1 align-middle">{{ products.categoria }}</span>
                 </div>
             </td>
             <td>
-                {{ customer.date | date: 'MM/dd/yyyy' }}
+                {{ products.date  }}
             </td>
             <td>
-                {{ customer.balance | currency: 'USD' : 'symbol' }}
+                {{ products.balance  }}
             </td>
+            <!-- <td>
+                <p-tag [value]="products.status" [severity]="getSeverity(products.status)" />
+            </td> -->
             <td>
-                <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)" />
-            </td>
-            <td>
-                <p-progressBar [value]="customer.activity" [showValue]="false" />
+                <p-progressBar [value]="products.activity" [showValue]="false" />
             </td>
             <td style="text-align: center">
                 <p-button rounded icon="pi pi-cog" />

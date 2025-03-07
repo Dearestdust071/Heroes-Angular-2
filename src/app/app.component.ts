@@ -9,12 +9,6 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Heroes-Angular-2';
-
   
-
-
-
-
-
 
 }

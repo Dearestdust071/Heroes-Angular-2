@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ImportsModule } from './imports';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Product } from '../../../interfaces/product';
-import { ProductService } from '../../../service/productservice';
+import { Product } from '../../shared/model/product';
+import { ProductService } from '../../shared/service/productservice';
 import { Dialog } from 'primeng/dialog';
 import { Ripple } from 'primeng/ripple';
 import { ConfirmDialog } from 'primeng/confirmdialog';
