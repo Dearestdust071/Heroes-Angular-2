@@ -40,6 +40,12 @@ export class ProductosComponent {
       this.loading = false;
     });
 
+
   }
+
+  onSubmit(){
+    
+  }
+
 
 }
