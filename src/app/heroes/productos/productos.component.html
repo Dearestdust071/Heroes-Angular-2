@@ -1,24 +1,73 @@
-<!-- <Form [formGroup]="Formulario" (ngSubmit)="onSubmit()">
-<div class="flex flex-col md:flex-row">
-    <div class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
-        <div class="flex flex-col gap-2">
-            <label for="email">email</label>
-            <input pInputText formControlName="email" id="user" type="text" />
-        </div>
-        <div class="flex flex-col gap-2">
-            <label for="password">Password</label>
-            <input pInputText formControlName="password" id="password" type="password" />
-        </div>
-        <div class="flex">
-            <p-button type="submit" label="Login" icon="pi pi-user" class="w-full max-w-[17.35rem]" styleClass="w-full mx-auto" />
-        </div>
-    </div>
-    <div class="w-full md:w-2/12">
-        <p-divider layout="vertical" class="!hidden md:!flex"><b>OR</b></p-divider>
-        <p-divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></p-divider>
-    </div>
-    <div class="w-full md:w-5/12 flex items-center justify-center py-5">
-        <p-button label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full max-w-[17.35rem]" styleClass="w-full mx-auto" />
-    </div>
-</div>
-</Form> -->
+<p-table
+    #dt
+    [value]="data.data"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    [filterDelay]="0"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+>
+    <ng-template #header>
+        <tr>
+            <th style="width: 4rem">
+                <p-tableHeaderCheckbox />
+            </th>
+            <th pSortableColumn="nombre" style="min-width: 14rem">
+                <div class="flex justify-between items-center">
+                    Nombre
+                    <p-sortIcon field="nombre" />
+                    <p-columnFilter type="text" field="nombre" display="menu" class="ml-auto" />
+                </div>
+            </th>
+            <th pSortableColumn="categoria" style="min-width: 14rem">
+                <div class="flex justify-between items-center">
+                    Categoría
+                    <p-sortIcon field="categoria" />
+                </div>
+            </th>
+            <th pSortableColumn="genero" style="min-width: 10rem">
+                <div class="flex justify-between items-center">
+                    Género
+                    <p-sortIcon field="genero" />
+                </div>
+            </th>
+            <th style="min-width: 14rem">Imagen</th>
+            <th pSortableColumn="created_at" style="min-width: 14rem">
+                <div class="flex justify-between items-center">
+                    Creado en
+                    <p-sortIcon field="created_at" />
+                </div>
+            </th>
+            <th style="width: 5rem">Acciones</th>
+        </tr>
+    </ng-template>
+
+    <ng-template #body let-item>
+        <tr class="p-selectable-row">
+            <td>
+                <p-tableCheckbox [value]="item" />
+            </td>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.genero }}</td>
+            <td>
+                <img [src]="item.url" alt="{{ item.nombre }}" width="50" height="50" style="border-radius: 5px;" />
+            </td>
+            <td>{{ item.created_at }}</td>
+            <td style="text-align: center">
+                <p-button rounded icon="pi pi-cog" />
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+        <tr>
+            <td colspan="7">No se encontraron registros.</td>
+        </tr>
+    </ng-template>
+</p-table>
+
